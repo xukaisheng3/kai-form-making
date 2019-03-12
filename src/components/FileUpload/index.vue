@@ -7,6 +7,8 @@
             :action="this.uploadUrl"
             :before-upload="handleBeforeUpload"
             :on-success="handleSuccess"
+            :on-change="handleChange"
+            :on-remove="handleRemove"
             :file-list="fileList">
       <el-button size="small" type="primary">点击上传</el-button>
       <!--<div slot="tip" class="el-upload__tip">只能上传文件，且不超过500kb</div>-->
@@ -79,8 +81,21 @@ export default {
       handleBeforeUpload (file) {
           //console.info("file:"+file)
       },
-      handleChange (file, fileList) {
+      handleRemove(file, fileList) {
+          this.fileList = fileList;
+      },
 
+      handleChange (file, fileList) {
+        //  this.fileList = fileList;
+       /*  console.log(this.fileList[0].response)
+          this.$nextTick(
+              () => {
+                  let upload_list_li = document.getElementsByClassName('el-upload-list')[1].getElementsByTagName('a');
+                  for (let i = 0; i < upload_list_li.length; i++) {
+                      let li_a = upload_list_li[i];
+                   //   li_a.href=this.fileList[i].response.url;
+                  }
+              });*/
       },
       handleSuccess(response, file, fileList){
           //console.info("上传成功："+JSON.stringify(fileList))
@@ -106,6 +121,12 @@ export default {
                 })*/
                 //console.info("编辑this.fileList："+JSON.stringify(this.fileList))
                 this.$emit('input', fileList)
+
+                let upload_list_li = document.getElementsByClassName('el-upload-list')[1].getElementsByTagName('a');
+                for (let i = 0; i < upload_list_li.length; i++) {
+                    let li_a = upload_list_li[i];
+                       li_a.href=fileList[i].response.url;
+                }
             }
 
       }
