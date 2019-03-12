@@ -5,7 +5,7 @@ export const basicComponents = [
     icon: 'icon-input',
     options: {
       width: '100%',
-      defaultValue: '',
+      defaultValue: null,
       required: false,
       dataType: 'string',
       pattern: '',
