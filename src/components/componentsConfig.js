@@ -266,7 +266,7 @@ export const advanceComponents = [
                 height: 100,
             },
             width: '',
-            uploadUrl: 'http://localhost/api/sys/oss/localUpload',
+            uploadUrl: 'http://dev.xinhuawealth.com/api/sys/oss/upload',
             disabled: false,
             length: 8,
             multiple: true
@@ -285,7 +285,7 @@ export const advanceComponents = [
             width: '',
             finishFunc: 'funcGetToken',
             data: {},
-            uploadUrl: 'http://localhost/api/sys/oss/localUpload',
+            uploadUrl: 'http://dev.xinhuawealth.com/api/sys/oss/upload',
             disabled: false,
             length: 8,
             multiple: true

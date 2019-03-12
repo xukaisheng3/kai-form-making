@@ -431,7 +431,6 @@ export default {
       if (!this.show) {
         return false
       }
-      
       if (val) {
         this.validator.type = {type: val, message: this.data.name + '格式不正确'}
       } else {
