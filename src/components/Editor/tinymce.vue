@@ -61,9 +61,9 @@ export default {
 
     tinymce.init({
         selector:'#'+_this.id,
-        language_url: 'lib/tinymce/zh_CN.js',
+        language_url: 'http://tools.xiaoyaoji.cn/form/lib/tinymce/zh_CN.js',
         language: 'zh_CN',
-        skin_url: 'lib/tinymce/skins/lightgray',
+       // skin_url: 'lib/tinymce/skins/lightgray',
         height: this.height,
         menubar: false,
         // images_upload_handler: (blobInfo, success, failure) => {
