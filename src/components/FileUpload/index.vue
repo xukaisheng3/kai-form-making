@@ -56,8 +56,18 @@ export default {
         console.info("fileupload this.value:"+JSON.stringify(this.value))
         if(this.value && this.value.length>0){
             this.fileList = this.value
+            //把动态获取ID的操作放到this.$nextTick的回调中执行即可
+            this.$nextTick(() => {
+                let upload_list_li = document.getElementById(this.uploadId).getElementsByTagName('a');
+                console.log(this.uploadId)
+                console.log(upload_list_li.length)
+                for (let i = 0; i < upload_list_li.length; i++) {
+                    let li_a = upload_list_li[i];
+                    li_a.href = this.fileList[i].response.url;
+                }
+            })
         }
-
+       this.inithref()
     },
 
   data () {
@@ -76,13 +86,19 @@ export default {
         return this.width
       }
     }
+
   },
   methods: {
       handleBeforeUpload (file) {
           //console.info("file:"+file)
       },
+      inithref () {
+
+      },
       handleRemove(file, fileList) {
+          console.log(file, fileList);
           this.fileList = fileList;
+          this.$emit('input', fileList)
       },
 
       handleChange (file, fileList) {
@@ -121,8 +137,7 @@ export default {
                 })*/
                 //console.info("编辑this.fileList："+JSON.stringify(this.fileList))
                 this.$emit('input', fileList)
-
-                let upload_list_li = document.getElementsByClassName('el-upload-list')[1].getElementsByTagName('a');
+                let upload_list_li = document.getElementById(this.uploadId).getElementsByTagName('a');
                 for (let i = 0; i < upload_list_li.length; i++) {
                     let li_a = upload_list_li[i];
                        li_a.href=fileList[i].response.url;
