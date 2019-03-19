@@ -80,6 +80,14 @@ export default {
   methods: {
       handleBeforeUpload (file) {
           //console.info("file:"+file)
+          const isLt2M = file.size / 1024 / 1024 < 30     //这里做文件大小限制
+          if(!isLt2M) {
+              this.$message({
+                  message: '上传文件大小不能超过 30MB!',
+                  type: 'warning'
+              });
+          }
+          return  isLt2M
       },
       handleRemove(file, fileList) {
           this.fileList = fileList;
@@ -126,6 +134,7 @@ export default {
                 for (let i = 0; i < upload_list_li.length; i++) {
                     let li_a = upload_list_li[i];
                        li_a.href=fileList[i].response.url;
+                       li_a.target='_blank';
                 }
             }
 
